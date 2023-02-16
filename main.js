@@ -18,31 +18,50 @@ body.addEventListener('mouseup', (event) => {
         .then((data) => {
         const definition = data[0]['meanings'][0]['definitions'][0]['definition']
         const popUp = document.createElement('div')
-        popUp.setAttribute('id', 'pop-up-box')
-        popUp.style.border = 'solid black 5px'
+        popUp.setAttribute('id', 'pop-up-box-hackathon')
+        popUp.style.border = 'dotted black 2px'
         popUp.style.position = 'absolute'
         popUp.style.backgroundColor = 'white'
         popUp.style.height = '500px'
         popUp.style.width = '500px'
-        popUp.style.zIndex = '90'
+        popUp.style.zIndex = '90000'
         popUp.style.top = '0px'
         popUp.style.left = '0px'
+        popUp.style.display = 'flex'
+        popUp.style.flexDirection = 'column'
+        popUp.style.alignItems = 'center'
+        popUp.style.justifyContent = 'center'
+        popUp.style.textAlign = 'center'
+        const word = document.createElement('h1')
+        word.innerText = `${highlightedText}`
+        word.style.fontSize = '300%'
+        popUp.appendChild(word)
+        const text = document.createElement('h2')
+        text.innerText = definition
         const button = document.createElement('button')
         button.addEventListener('click', (e) => {
           e.preventDefault()
-          const toRemove = document.querySelector('#pop-up-box')
+          const toRemove = document.querySelector('#pop-up-box-hackathon')
           toRemove.remove()
         })
         button.innerText = 'Close Definition'
-        popUp.appendChild(button)
-        const text = document.createElement('h1')
-        text.innerText = definition
+        button.style.backgroundColor = 'white'
+        button.style.borderRadius = '10px'
+        button.style.padding = '10px'
+        button.style.color = 'red'
+        button.style.outline = 'none'
+        button.style.boxShadow = 'none'
+        button.style.borderColor = 'red'
+        button.style.borderWidth = '3px'
         popUp.appendChild(text)
+        popUp.appendChild(button)
         body.appendChild(popUp)
         highlightedText = ''
     })
+
+
       }
-    })
+    }, {once: true})
 
     //define async function
    
